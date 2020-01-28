@@ -13,7 +13,7 @@ import {createStackNavigator, TransitionPresets} from 'react-navigation-stack';
 import Home from './src/screens/home';
 import Login from './src/screens/login';
 import About from './src/screens/about';
-import Profile from './src/profile/components/name';
+import Profile from './src/screens/profile';
 
 const RootStack = createStackNavigator(
   {
@@ -24,13 +24,12 @@ const RootStack = createStackNavigator(
         title: 'Esta es la Home',
       },
     },
-    Login,
     About,
     Profile,
   },
   {
-    initialRouteName: 'Login',
-    initialRouteKey: 'login',
+    initialRouteName: 'Home',
+    initialRouteKey: 'home',
     initialRouteParams: {
       nombre: 'Cristobal Maturana',
     },
@@ -51,10 +50,25 @@ const RootStack = createStackNavigator(
   },
 );
 
-const AppContainer = createAppContainer(RootStack);
+const Main = createStackNavigator(
+  {
+    Main: {
+      screen: RootStack,
+    },
+    Login: {
+      screen: Login,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  },
+);
+
+const MainContainer = createAppContainer(Main);
 
 export default class App extends React.Component {
   render() {
-    return <AppContainer />;
+    return <MainContainer />;
   }
 }
