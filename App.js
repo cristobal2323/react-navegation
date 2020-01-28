@@ -7,8 +7,9 @@
  */
 
 import React from 'react';
+import {Text} from 'react-native';
 import {createAppContainer} from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
+import {createStackNavigator, TransitionPresets} from 'react-navigation-stack';
 import Home from './src/screens/home';
 import Login from './src/screens/login';
 import About from './src/screens/about';
@@ -33,8 +34,19 @@ const RootStack = createStackNavigator(
     initialRouteParams: {
       nombre: 'Cristobal Maturana',
     },
-    navigationOptions: {
+    mode: 'card',
+    defaultNavigationOptions: {
+      headerBackTitle: 'Atras',
+      headerTitleAllowFontScaling: true,
       title: 'Un titulo generico',
+      gestureEnabled: true,
+      headerBackImage: () => <Text>{`<=`}</Text>,
+      ...TransitionPresets.SlideFromRightIOS,
+      cardStyle: {
+        borderWidth: 2,
+        backgroundColor: 'red',
+      },
+      //header: () => <Text>Esto es un header</Text>,
     },
   },
 );

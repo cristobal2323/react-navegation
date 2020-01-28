@@ -4,7 +4,6 @@ import {NavigationActions} from 'react-navigation';
 
 class Login extends Component {
   handlePress = () => {
-    console.log(this.props.navigation);
     // this.props.navigation.navigate('About')
     this.props.navigation.dispatch(
       NavigationActions.navigate({
